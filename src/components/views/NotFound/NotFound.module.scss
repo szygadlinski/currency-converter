@@ -5,7 +5,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: ($base-size * 4) $base-size;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   .title {
     text-align: center;
