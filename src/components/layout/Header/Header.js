@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { AppBar, Toolbar, Link, Typography } from '@material-ui/core';
 import EuroIcon from '@material-ui/icons/Euro';
@@ -20,10 +19,6 @@ const Component = () => (
     </AppBar>
   </div>
 );
-
-Component.propTypes = {
-  children: PropTypes.node,
-};
 
 export {
   Component as Header,

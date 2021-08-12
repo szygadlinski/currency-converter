@@ -1,4 +1,34 @@
 @import '../../../styles/settings.scss';
 
-// .root {
-// }
+.root {
+  background: $main;
+  color: $text;
+  padding: $base-size * 3;
+  text-align: center;
+  min-height: 30vh;
+
+  .icons {
+    .icon {
+      color: $text;
+      font-size: $base-size * 4;
+      margin: $base-size ($base-size * 4);
+
+      &:hover {
+        color: $white;
+        transform: rotate(360deg) scale(2.5);
+        transition: $transition;
+      }
+    }
+  }
+
+  .copyright {
+    font-size: $base-size * 1.5;
+    margin-top: $base-size * 3;
+  }
+
+  // @media (max-width: 767px) {
+  //   .icons .icon {
+  //     margin: $base-size ($base-size * 2);
+  //   }
+  // }
+}
