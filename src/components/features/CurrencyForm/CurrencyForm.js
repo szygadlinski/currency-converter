@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import clsx from 'clsx';
 
 import { FormControl, OutlinedInput, InputLabel, Select, MenuItem, Button, Typography } from '@material-ui/core';
 import styles from './CurrencyForm.module.scss';
@@ -24,8 +25,8 @@ const Component = () => {
 
   return (
     <div className={styles.root}>
-      <form onSubmit={convertCurrency}>
-        <FormControl variant='outlined'>
+      <form className={styles.form} onSubmit={convertCurrency}>
+        <FormControl variant='outlined' className={styles.input}>
           <InputLabel htmlFor='amount'>Amount</InputLabel>
           <OutlinedInput
             id='amount'
@@ -33,7 +34,6 @@ const Component = () => {
             type='number'
             label='Amount'
             required
-            className={styles.input}
             value={conversion.amount}
             onChange={changeConversion}
             inputProps={{
@@ -43,14 +43,13 @@ const Component = () => {
           />
         </FormControl>
 
-        <FormControl variant='outlined'>
+        <FormControl variant='outlined' className={styles.input}>
           <InputLabel htmlFor='from'>From</InputLabel>
           <Select
             id='from'
             name='from'
             label='From'
             required
-            className={styles.input}
             value={conversion.from}
             onChange={changeConversion}
           >
@@ -60,14 +59,13 @@ const Component = () => {
           </Select>
         </FormControl>
 
-        <FormControl variant='outlined'>
+        <FormControl variant='outlined' className={styles.input}>
           <InputLabel htmlFor='from'>To</InputLabel>
           <Select
             id='to'
             name='to'
             label='To'
             required
-            className={styles.input}
             value={conversion.to}
             onChange={changeConversion}
           >
@@ -79,7 +77,7 @@ const Component = () => {
 
         <Button
           type='submit'
-          className={styles.input}
+          className={clsx(styles.input, styles.button)}
           variant='contained'
         >
           <Typography variant="h6">
@@ -89,7 +87,7 @@ const Component = () => {
       </form>
 
       <p>
-        100000 PLN = <strong>999999 EUR</strong>
+        100000 PLN = <br /><strong>999999 EUR</strong>
       </p>
     </div>
   );

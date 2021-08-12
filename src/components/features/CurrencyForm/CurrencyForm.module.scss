@@ -1,4 +1,41 @@
 @import '../../../styles/settings.scss';
 
-// .root {
-// }
+.root {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: $base-size * 2;
+
+  .form {
+    display: flex;
+    flex-direction: column;
+
+    .input {
+      width: 300px;
+      margin: $base-size;
+
+      &.button {
+        color: $text;
+        background: $grey;
+
+        &:hover {
+          color: $white;
+          background: $main;
+          transform: scale(1.2);
+          transition: $transition;
+        }
+      }
+    }
+  }
+
+  p {
+    text-align: center;
+    color: $text;
+    margin: $base-size;
+    font-size: $base-size * 1.5;
+
+    strong {
+      font-size: $base-size * 2;
+    }
+  }
+}
