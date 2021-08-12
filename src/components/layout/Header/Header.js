@@ -1,11 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import { AppBar, Toolbar, Link, Typography } from '@material-ui/core';
+import EuroIcon from '@material-ui/icons/Euro';
 import styles from './Header.module.scss';
 
-const Component = ({ children }) => (
+const Component = () => (
   <div className={styles.root}>
-    <h2>Header</h2>
-    {children}
+    <AppBar position="static">
+      <Toolbar className={styles.toolbar}>
+        <Link href='/' className={styles.title}>
+          <EuroIcon className={styles.icon} />
+          <Typography variant="h4">
+            Currency Converter
+          </Typography>
+          <EuroIcon className={styles.icon} />
+        </Link>
+      </Toolbar>
+    </AppBar>
   </div>
 );
 
