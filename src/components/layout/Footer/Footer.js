@@ -1,15 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './MainLayout.module.scss';
-
-import { Header } from '../Header/Header';
-import { Footer } from '../Footer/Footer';
+import styles from './Footer.module.scss';
 
 const Component = ({ children }) => (
   <div className={styles.root}>
-    <Header />
+    <h2>Footer</h2>
     {children}
-    <Footer />
   </div>
 );
 
@@ -18,5 +14,5 @@ Component.propTypes = {
 };
 
 export {
-  Component as MainLayout,
+  Component as Footer,
 };
