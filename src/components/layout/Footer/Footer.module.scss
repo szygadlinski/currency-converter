@@ -7,17 +7,15 @@
   text-align: center;
   min-height: 30vh;
 
-  .icons {
-    .icon {
-      color: $text;
-      font-size: $base-size * 4;
-      margin: $base-size ($base-size * 4);
+  .icon {
+    color: $text;
+    font-size: $base-size * 4;
+    margin: $base-size ($base-size * 4);
 
-      &:hover {
-        color: $white;
-        transform: rotate(360deg) scale(2.5);
-        transition: $transition;
-      }
+    &:hover {
+      color: $white;
+      transform: rotate(360deg) scale(2.5);
+      transition: $transition;
     }
   }
 
@@ -26,9 +24,15 @@
     margin-top: $base-size * 3;
   }
 
-  // @media (max-width: 767px) {
-  //   .icons .icon {
-  //     margin: $base-size ($base-size * 2);
-  //   }
-  // }
+  @media (min-width: 576px) and (max-width: 767px) {
+    .icon {
+      margin: $base-size ($base-size * 2);
+    }
+  }
+
+  @media (max-width: 575px) {
+    .icon {
+      margin: $base-size;
+    }
+  }
 }

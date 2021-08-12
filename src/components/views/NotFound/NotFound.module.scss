@@ -31,9 +31,17 @@
     }
   }
 
-  // @media (max-width: 991px) {
-  //   .return .icon {
-  //     font-size: $base-size * 2;
-  //   }
-  // }
+  @media (max-width: 575px) {
+    .title {
+      font-size: $base-size * 1.5;
+    }
+
+    .return {
+      font-size: $base-size * 1.5;
+
+      .icon {
+        font-size: $base-size * 2;
+      }
+    }
+  }
 }

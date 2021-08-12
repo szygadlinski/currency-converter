@@ -11,8 +11,8 @@
     flex-direction: column;
 
     .input {
-      width: 300px;
-      margin: $base-size;
+      width: 400px;
+      margin: $base-size auto;
 
       &.button {
         color: $text;
@@ -36,6 +36,12 @@
 
     strong {
       font-size: $base-size * 2;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .form .input {
+      width: 250px;
     }
   }
 }
