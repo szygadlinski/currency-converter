@@ -5,6 +5,7 @@
   background: $grey;
 
   .content {
+    min-height: 60vh;
     padding: ($base-size * 2) ($base-size * 3);
   }
 }

@@ -1,4 +1,40 @@
 @import '../../../styles/settings.scss';
 
-// .root {
-// }
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: ($base-size * 4) $base-size;
+
+  .title {
+    text-align: center;
+    margin: $base-size;
+    font-size: $base-size * 2;
+    color: $text;
+  }
+
+  .return {
+    margin: $base-size;
+    color: $text;
+    background: $grey;
+    font-size: $base-size * 2;
+
+    .icon {
+      font-size: $base-size * 3;
+    }
+
+    &:hover {
+      color: $white;
+      background: $main;
+      transform: scale(1.2);
+      transition: $transition;
+    }
+  }
+
+  // @media (max-width: 991px) {
+  //   .return .icon {
+  //     font-size: $base-size * 2;
+  //   }
+  // }
+}
