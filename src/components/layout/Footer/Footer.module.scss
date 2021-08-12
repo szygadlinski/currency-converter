@@ -1,11 +1,14 @@
 @import '../../../styles/settings.scss';
 
 .root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background: $main;
   color: $text;
   padding: $base-size * 3;
   text-align: center;
-  min-height: 30vh;
+  min-height: 25vh;
 
   .icon {
     color: $text;

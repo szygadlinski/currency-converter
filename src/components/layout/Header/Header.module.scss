@@ -1,9 +1,8 @@
 @import '../../../styles/settings.scss';
 
 .root {
-  min-height: 10vh;
-
   .toolbar {
+    min-height: 10vh;
     margin: auto;
 
     .title {
