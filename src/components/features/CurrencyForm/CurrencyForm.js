@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
+
+import { connect } from 'react-redux';
+import { getCurrencies } from '../../../redux/currenciesRedux';
 
 import { FormControl, OutlinedInput, InputLabel, Select, MenuItem, Button, Typography } from '@material-ui/core';
 import styles from './CurrencyForm.module.scss';
 
-import data from '../../../currencies.json';
-
-const Component = () => {
+const Component = ({ currencies }) => {
 
   const [conversion, setConversion] = useState({
     amount: '',
@@ -22,7 +24,9 @@ const Component = () => {
     });
   };
 
-  const convertCurrency = () => {
+  const convertCurrency = event => {
+    event.preventDefault();
+
 
   };
 
@@ -42,6 +46,7 @@ const Component = () => {
             inputProps={{
               min: 0,
               max: 999999999,
+              step: 0.01,
             }}
           />
         </FormControl>
@@ -56,7 +61,7 @@ const Component = () => {
             value={conversion.from}
             onChange={changeConversion}
           >
-            {data.currencies.map(currency => (
+            {currencies.map(currency => (
               <MenuItem
                 key={currency.iso}
                 value={currency.iso}
@@ -77,7 +82,7 @@ const Component = () => {
             value={conversion.to}
             onChange={changeConversion}
           >
-            {data.currencies.map(currency => (
+            {currencies.map(currency => (
               <MenuItem
                 key={currency.iso}
                 value={currency.iso}
@@ -111,6 +116,17 @@ const Component = () => {
   );
 };
 
+Component.propTypes = {
+  currencies: PropTypes.array,
+};
+
+const mapStateToProps = state => ({
+  currencies: getCurrencies(state),
+});
+
+const Container = connect(mapStateToProps)(Component);
+
 export {
-  Component as CurrencyForm,
+  Container as CurrencyForm,
+  Component as CurrencyFormComponent,
 };
