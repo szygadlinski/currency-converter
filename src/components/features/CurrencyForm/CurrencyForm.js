@@ -4,12 +4,15 @@ import clsx from 'clsx';
 import { FormControl, OutlinedInput, InputLabel, Select, MenuItem, Button, Typography } from '@material-ui/core';
 import styles from './CurrencyForm.module.scss';
 
+import data from '../../../currencies.json';
+
 const Component = () => {
 
   const [conversion, setConversion] = useState({
-    amount: 0,
+    amount: '',
     from: '',
     to: '',
+    exchangeRate: '',
   });
 
   const changeConversion = event => {
@@ -53,9 +56,14 @@ const Component = () => {
             value={conversion.from}
             onChange={changeConversion}
           >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            {data.currencies.map(currency => (
+              <MenuItem
+                key={currency.iso}
+                value={currency.iso}
+              >
+                {`${currency.iso} - ${currency.currency_name}`}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
 
@@ -69,9 +77,14 @@ const Component = () => {
             value={conversion.to}
             onChange={changeConversion}
           >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            {data.currencies.map(currency => (
+              <MenuItem
+                key={currency.iso}
+                value={currency.iso}
+              >
+                {`${currency.iso} - ${currency.currency_name}`}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
 
@@ -79,6 +92,7 @@ const Component = () => {
           type='submit'
           className={clsx(styles.input, styles.button)}
           variant='contained'
+          disabled={conversion.amount > 0 ? false : true}
         >
           <Typography variant="h6">
             Convert
@@ -87,7 +101,11 @@ const Component = () => {
       </form>
 
       <p>
-        100000 PLN = <br /><strong>999999 EUR</strong>
+        {`${conversion.amount} ${conversion.from} =`}
+        <br />
+        <strong>
+          {`${conversion.amount * conversion.exchangeRate} ${conversion.to}`}
+        </strong>
       </p>
     </div>
   );
