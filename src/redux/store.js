@@ -2,7 +2,7 @@ import { combineReducers, createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import data from './currencies.json';
+import data from './initialState.json';
 import { reducer as currenciesReducer } from './currenciesRedux';
 
 const reducers = {
