@@ -1,6 +1,15 @@
 {
   "items": {
-    "data": {},
+    "data": {
+      "currencies": []
+    },
+    "exchange": {
+      "to": [
+        {
+          "mid": 0
+        }
+      ]
+    },
     "loading": {
       "active": false,
       "error": false

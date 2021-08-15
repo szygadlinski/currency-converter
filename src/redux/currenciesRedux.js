@@ -1,16 +1,19 @@
 import Axios from 'axios';
 
 export const getCurrencies = ({ items }) => items.data.currencies;
+export const getExchange = ({ items }) => items.exchange.to[0].mid;
 
 const reducerName = 'currencies';
 const createActionName = name => `app/${reducerName}/${name}`;
 
 const FETCH_START = createActionName('FETCH_START');
 const FETCH_SUCCESS = createActionName('FETCH_SUCCESS');
+const FETCH_EXCHANGE_SUCCESS = createActionName('FETCH_EXCHANGE_SUCCESS');
 const FETCH_ERROR = createActionName('FETCH_ERROR');
 
 export const fetchStarted = payload => ({ payload, type: FETCH_START });
 export const fetchSuccess = payload => ({ payload, type: FETCH_SUCCESS });
+export const fetchExchangeSuccess = payload => ({ payload, type: FETCH_EXCHANGE_SUCCESS });
 export const fetchError = payload => ({ payload, type: FETCH_ERROR });
 
 export const fetchCurrenciesFromAPI = () => {
@@ -47,7 +50,7 @@ export const fetchExchangeFromAPI = (from, to, amount) => {
       },
     })
       .then(res => {
-        dispatch(fetchSuccess(res.data));
+        dispatch(fetchExchangeSuccess(res.data));
       })
       .catch(err => {
         dispatch(fetchError(err.message || true));
@@ -70,6 +73,16 @@ export const reducer = (statePart = [], action = {}) => {
       return {
         ...statePart,
         data: action.payload,
+        loading: {
+          active: false,
+          error: false,
+        },
+      };
+    }
+    case FETCH_EXCHANGE_SUCCESS: {
+      return {
+        ...statePart,
+        exchange: action.payload,
         loading: {
           active: false,
           error: false,

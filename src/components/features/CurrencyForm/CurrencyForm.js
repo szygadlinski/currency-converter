@@ -1,22 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 import { connect } from 'react-redux';
-import { getCurrencies, fetchCurrenciesFromAPI, fetchExchangeFromAPI } from '../../../redux/currenciesRedux';
+import { getCurrencies, getExchange, fetchCurrenciesFromAPI, fetchExchangeFromAPI } from '../../../redux/currenciesRedux';
 
 import { FormControl, OutlinedInput, InputLabel, Select, MenuItem, Button, Typography } from '@material-ui/core';
 import styles from './CurrencyForm.module.scss';
 
-const Component = ({ currencies, fetchCurrencies, fetchExchange }) => {
+const Component = ({ currencies, exchange, fetchCurrencies, fetchExchange }) => {
 
-  fetchCurrencies();
+  useEffect(() => {
+    fetchCurrencies();
+  }, [fetchCurrencies]);
 
   const [conversion, setConversion] = useState({
     amount: '',
     from: '',
     to: '',
-    exchangeRate: '',
   });
 
   const changeConversion = event => {
@@ -26,11 +27,9 @@ const Component = ({ currencies, fetchCurrencies, fetchExchange }) => {
     });
   };
 
-  let result = {};
-
   const convertCurrency = event => {
     event.preventDefault();
-    result = fetchExchange(conversion.from, conversion.to, conversion.amount);
+    fetchExchange(conversion.from, conversion.to, conversion.amount);
   };
 
   return (
@@ -112,7 +111,7 @@ const Component = ({ currencies, fetchCurrencies, fetchExchange }) => {
         {`${conversion.amount} ${conversion.from} =`}
         <br />
         <strong>
-          {`${result.to[0].mid} ${conversion.to}`}
+          {`${exchange} ${conversion.to}`}
         </strong>
       </p>
     </div>
@@ -121,12 +120,14 @@ const Component = ({ currencies, fetchCurrencies, fetchExchange }) => {
 
 Component.propTypes = {
   currencies: PropTypes.array,
+  exchange: PropTypes.number,
   fetchCurrencies: PropTypes.func,
   fetchExchange: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
   currencies: getCurrencies(state),
+  exchange: getExchange(state),
 });
 
 const mapDispatchToProps = dispatch => ({
