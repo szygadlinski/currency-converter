@@ -1,3 +1,5 @@
+# App is deployed on firebase - [click here!](https://currency-convert-app.web.app/)
+
 ## Available Scripts
 
 In the project directory, you can run:
