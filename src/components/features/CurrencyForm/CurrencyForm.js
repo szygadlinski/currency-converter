@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 import { connect } from 'react-redux';
-import { getCurrencies, fetchCurrencies } from '../../../redux/currenciesRedux';
+import { getCurrencies, fetchCurrenciesFromAPI } from '../../../redux/currenciesRedux';
 
 import { FormControl, OutlinedInput, InputLabel, Select, MenuItem, Button, Typography } from '@material-ui/core';
 import styles from './CurrencyForm.module.scss';
 
 const Component = ({ currencies, fetchCurrencies }) => {
+
+  fetchCurrencies();
 
   const [conversion, setConversion] = useState({
     amount: '',
@@ -126,7 +128,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchCurrencies: () => dispatch(fetchCurrencies()),
+  fetchCurrencies: () => dispatch(fetchCurrenciesFromAPI()),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);

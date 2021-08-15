@@ -13,12 +13,18 @@ export const fetchStarted = payload => ({ payload, type: FETCH_START });
 export const fetchSuccess = payload => ({ payload, type: FETCH_SUCCESS });
 export const fetchError = payload => ({ payload, type: FETCH_ERROR });
 
-export const fetchCurrencies = () => {
+export const fetchCurrenciesFromAPI = () => {
   return dispatch => {
     dispatch(fetchStarted());
 
-    Axios
-      .get('https://xecdapi.xe.com/v1/currencies.json/?obsolete=true')
+    Axios({
+      method: 'get',
+      url: 'https://xecdapi.xe.com/v1/currencies.json/?obsolete=true',
+      auth: {
+        username: 'szymonzygadliski45154474',
+        password: 'p62erk9kvkvb8774iel4m8p1hn',
+      },
+    })
       .then(res => {
         dispatch(fetchSuccess(res.data));
       })

@@ -3,10 +3,10 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import data from './initialState.json';
-import { reducer as currenciesReducer } from './currenciesRedux';
+import { reducer as itemsReducer } from './currenciesRedux';
 
 const reducers = {
-  currencies: currenciesReducer,
+  items: itemsReducer,
 };
 
 Object.keys(data).forEach(item => {
