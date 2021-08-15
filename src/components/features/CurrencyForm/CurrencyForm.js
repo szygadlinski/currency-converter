@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 import { connect } from 'react-redux';
-import { getCurrencies, fetchCurrenciesFromAPI } from '../../../redux/currenciesRedux';
+import { getCurrencies, fetchCurrenciesFromAPI, fetchExchangeFromAPI } from '../../../redux/currenciesRedux';
 
 import { FormControl, OutlinedInput, InputLabel, Select, MenuItem, Button, Typography } from '@material-ui/core';
 import styles from './CurrencyForm.module.scss';
 
-const Component = ({ currencies, fetchCurrencies }) => {
+const Component = ({ currencies, fetchCurrencies, fetchExchange }) => {
 
   fetchCurrencies();
 
@@ -26,10 +26,11 @@ const Component = ({ currencies, fetchCurrencies }) => {
     });
   };
 
+  let result = {};
+
   const convertCurrency = event => {
     event.preventDefault();
-
-
+    result = fetchExchange(conversion.from, conversion.to, conversion.amount);
   };
 
   return (
@@ -111,7 +112,7 @@ const Component = ({ currencies, fetchCurrencies }) => {
         {`${conversion.amount} ${conversion.from} =`}
         <br />
         <strong>
-          {`${conversion.amount * conversion.exchangeRate} ${conversion.to}`}
+          {`${result.to[0].mid} ${conversion.to}`}
         </strong>
       </p>
     </div>
@@ -121,6 +122,7 @@ const Component = ({ currencies, fetchCurrencies }) => {
 Component.propTypes = {
   currencies: PropTypes.array,
   fetchCurrencies: PropTypes.func,
+  fetchExchange: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -129,6 +131,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchCurrencies: () => dispatch(fetchCurrenciesFromAPI()),
+  fetchExchange: (from, to, amount) => dispatch(fetchExchangeFromAPI(from, to, amount)),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);

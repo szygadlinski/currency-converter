@@ -34,6 +34,27 @@ export const fetchCurrenciesFromAPI = () => {
   };
 };
 
+export const fetchExchangeFromAPI = (from, to, amount) => {
+  return dispatch => {
+    dispatch(fetchStarted());
+
+    Axios({
+      method: 'get',
+      url: `https://xecdapi.xe.com/v1/convert_from.json/?from=${from}&to=${to}&amount=${amount}`,
+      auth: {
+        username: 'szymonzygadliski45154474',
+        password: 'p62erk9kvkvb8774iel4m8p1hn',
+      },
+    })
+      .then(res => {
+        dispatch(fetchSuccess(res.data));
+      })
+      .catch(err => {
+        dispatch(fetchError(err.message || true));
+      });
+  };
+};
+
 export const reducer = (statePart = [], action = {}) => {
   switch (action.type) {
     case FETCH_START: {
