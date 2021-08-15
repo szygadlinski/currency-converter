@@ -18,18 +18,26 @@ const Component = ({ currencies, exchange, fetchCurrencies, fetchExchange }) => 
     amount: '',
     from: '',
     to: '',
+    display: false,
   });
 
   const changeConversion = event => {
     setConversion({
       ...conversion,
       [event.target.name]: event.target.value,
+      display: false,
     });
   };
 
   const convertCurrency = event => {
     event.preventDefault();
+
     fetchExchange(conversion.from, conversion.to, conversion.amount);
+
+    setConversion({
+      ...conversion,
+      display: true,
+    });
   };
 
   return (
@@ -107,13 +115,18 @@ const Component = ({ currencies, exchange, fetchCurrencies, fetchExchange }) => 
         </Button>
       </form>
 
-      <p>
-        {exchange > 0 ? `${conversion.amount} ${conversion.from}` : ''}
-        <br />
-        <strong>
-          {exchange > 0 ? `= ${exchange} ${conversion.to}` : ''}
-        </strong>
-      </p>
+      {exchange > 0 && conversion.display
+        ?
+        <p>
+          {`${conversion.amount} ${conversion.from}`}
+          <br />
+          <strong>
+            {`= ${Math.round(exchange * 100) / 100} ${conversion.to}`}
+          </strong>
+        </p>
+        :
+        ''
+      }
     </div>
   );
 };
