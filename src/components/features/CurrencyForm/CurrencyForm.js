@@ -108,10 +108,10 @@ const Component = ({ currencies, exchange, fetchCurrencies, fetchExchange }) => 
       </form>
 
       <p>
-        {`${conversion.amount} ${conversion.from} =`}
+        {(conversion.amount && conversion.from) ? `${conversion.amount} ${conversion.from} =` : ''}
         <br />
         <strong>
-          {`${exchange} ${conversion.to}`}
+          {exchange > 0 ? `${exchange} ${conversion.to}` : ''}
         </strong>
       </p>
     </div>
