@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import CurrencyFlag from 'react-currency-flags';
 
 import { connect } from 'react-redux';
 import { getCurrencies, getExchange, fetchCurrenciesFromAPI, fetchExchangeFromAPI } from '../../../redux/currenciesRedux';
@@ -76,6 +77,11 @@ const Component = ({ currencies, exchange, fetchCurrencies, fetchExchange }) => 
                 key={currency.iso}
                 value={currency.iso}
               >
+                <CurrencyFlag
+                  currency={currency.iso}
+                  size='md'
+                  className={styles.flag}
+                />
                 {`${currency.iso} - ${currency.currency_name}`}
               </MenuItem>
             ))}
@@ -97,6 +103,11 @@ const Component = ({ currencies, exchange, fetchCurrencies, fetchExchange }) => 
                 key={currency.iso}
                 value={currency.iso}
               >
+                <CurrencyFlag
+                  currency={currency.iso}
+                  size='md'
+                  className={styles.flag}
+                />
                 {`${currency.iso} - ${currency.currency_name}`}
               </MenuItem>
             ))}

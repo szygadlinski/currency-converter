@@ -14,6 +14,10 @@
       width: 400px;
       margin: $base-size auto;
 
+      .flag {
+        margin-right: $base-size;
+      }
+
       &.button {
         color: $text;
         background: $grey;
