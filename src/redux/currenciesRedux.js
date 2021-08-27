@@ -24,8 +24,8 @@ export const fetchCurrenciesFromAPI = () => {
       method: 'get',
       url: 'https://xecdapi.xe.com/v1/currencies.json/?obsolete=true',
       auth: {
-        username: 'szymonzygadliski45154474',
-        password: 'p62erk9kvkvb8774iel4m8p1hn',
+        username: 'szymonzygadliski695804869',
+        password: 'hrciaknahhtukhbhb5c00ek5fh',
       },
     })
       .then(res => {
@@ -45,8 +45,8 @@ export const fetchExchangeFromAPI = (from, to, amount) => {
       method: 'get',
       url: `https://xecdapi.xe.com/v1/convert_from.json/?from=${from}&to=${to}&amount=${amount}`,
       auth: {
-        username: 'szymonzygadliski45154474',
-        password: 'p62erk9kvkvb8774iel4m8p1hn',
+        username: 'szymonzygadliski695804869',
+        password: 'hrciaknahhtukhbhb5c00ek5fh',
       },
     })
       .then(res => {
